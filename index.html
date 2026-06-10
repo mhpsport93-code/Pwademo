@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+bnn<!DOCTYPE html>
 <html lang="en">
 <head>
   
@@ -892,6 +892,88 @@
     .scroll-top svg { width: 18px; height: 18px; color: #fff; }
 
     .scroll-top:hover { transform: translateY(-3px); }
+    /* ---------- PWA CSS---------- */
+    /* TOP INSTALL BAR */
+
+.install-popup-overlay{
+position:fixed;
+top:20px;
+left:0;
+right:0;
+bottom:auto;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+background:none;
+backdrop-filter:none;
+padding:0 12px;
+z-index:999999;
+pointer-events:none;
+}
+
+.install-popup-overlay.active{
+pointer-events:auto;
+}
+
+.install-popup{
+width:100%;
+max-width:650px;
+padding:16px;
+border-radius:18px;
+background:rgba(10,10,20,.96);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 15px 50px rgba(0,0,0,.55);
+transform:translateY(-40px);
+opacity:0;
+transition:.35s ease;
+}
+
+.install-popup-overlay.active .install-popup{
+transform:translateY(0);
+opacity:1;
+}
+
+.popup-close{
+position:absolute;
+top:12px;
+right:12px;
+width:38px;
+height:38px;
+border:none;
+border-radius:12px;
+background:rgba(255,255,255,.06);
+color:#aaa;
+cursor:pointer;
+}
+
+.popup-icon{
+width:52px;
+height:52px;
+border-radius:14px;
+margin:0 0 12px;
+}
+
+.install-popup h3{
+font-size:22px;
+margin-bottom:6px;
+}
+
+.install-popup p{
+font-size:14px;
+margin-bottom:12px;
+}
+
+.popup-steps{
+display:none;
+}
+
+#popupInstallNowBtn{
+width:100%;
+height:48px;
+border-radius:12px;
+}
   </style>
 </head>
 <body>
