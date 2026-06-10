@@ -752,206 +752,177 @@
     
 
     /* ===== PWA INSTALL POPUP CSS ===== */
-/* =========================
-   INSTALL POPUP OVERLAY
-========================= */
-
 .install-popup-overlay{
-display:none;
 position:fixed;
 inset:0;
 background:rgba(0,0,0,.75);
 backdrop-filter:blur(8px);
 -webkit-backdrop-filter:blur(8px);
+display:none;
 justify-content:center;
-align-items:flex-start;
-padding:20px 12px;
+align-items:center;
+padding:20px;
 z-index:999999;
 }
 
 .install-popup-overlay.active{
-display:flex !important;
+display:flex;
 }
-
-/* =========================
-   INSTALL CARD
-========================= */
 
 .install-popup{
 width:100%;
-max-width:420px;
-background:#111827;
-border:1px solid rgba(255,255,255,.08);
-border-radius:24px;
-padding:18px;
+max-width:380px;
+background:#090914;
+border-radius:34px;
+padding:24px;
 position:relative;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.06);
 box-shadow:
-0 25px 60px rgba(0,0,0,.55),
-0 0 0 1px rgba(255,255,255,.04);
-animation:popupShow .25s ease;
+0 20px 80px rgba(0,0,0,.7),
+0 0 40px rgba(255,120,0,.12);
 }
 
-/* =========================
-   ANIMATION
-========================= */
-
-@keyframes popupShow{
-from{
-opacity:0;
-transform:translateY(-20px) scale(.96);
+.install-popup::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+right:0;
+height:3px;
+background:linear-gradient(
+90deg,
+#ff4d4d,
+#ff9900,
+#ffb300
+);
 }
-to{
-opacity:1;
-transform:translateY(0) scale(1);
-}
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.popup-header{
-display:flex;
-align-items:center;
-gap:14px;
-margin-bottom:14px;
-}
-
-.popup-app-icon{
-width:64px;
-height:64px;
-border-radius:18px;
-object-fit:cover;
-background:#222;
-flex-shrink:0;
-}
-
-.popup-app-info{
-flex:1;
-}
-
-.popup-app-info h3{
-margin:0;
-font-size:22px;
-font-weight:700;
-color:#fff;
-line-height:1.2;
-}
-
-.popup-app-info span{
-display:block;
-margin-top:4px;
-font-size:13px;
-color:#9ca3af;
-}
-
-/* =========================
-   CLOSE BUTTON
-========================= */
 
 .popup-close{
 position:absolute;
-top:12px;
-right:12px;
-width:36px;
-height:36px;
+top:18px;
+right:18px;
+width:58px;
+height:58px;
 border:none;
-border-radius:12px;
-background:rgba(255,255,255,.08);
-color:#fff;
-font-size:16px;
-cursor:pointer;
-transition:.2s;
-}
-
-.popup-close:hover{
-background:rgba(255,255,255,.15);
-}
-
-/* =========================
-   DESCRIPTION
-========================= */
-
-.popup-description{
-font-size:14px;
-line-height:1.6;
-color:#d1d5db;
-margin-bottom:16px;
-}
-
-/* =========================
-   FEATURES
-========================= */
-
-.popup-features{
-display:flex;
-flex-direction:column;
-gap:10px;
-margin-bottom:18px;
-}
-
-.popup-feature{
+border-radius:18px;
 background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.05);
-padding:12px;
-border-radius:12px;
-font-size:14px;
-color:#fff;
+color:#999;
+font-size:28px;
+cursor:pointer;
 }
 
-/* =========================
-   INSTALL BUTTON
-========================= */
-
-.popup-install-btn{
-width:100%;
-height:52px;
-border:none;
-border-radius:14px;
-cursor:pointer;
-
-background:linear-gradient(
-135deg,
-#7c3aed,
-#06b6d4
-);
-
-color:#fff;
-font-size:16px;
-font-weight:700;
-
+.popup-icon{
+width:78px;
+height:78px;
+border-radius:22px;
+overflow:hidden;
+background:rgba(255,255,255,.04);
 display:flex;
 align-items:center;
 justify-content:center;
-gap:10px;
-
-box-shadow:
-0 10px 25px rgba(124,58,237,.35);
+margin-bottom:18px;
+box-shadow:0 0 25px rgba(255,255,255,.05);
 }
 
-.popup-install-btn:hover{
-transform:translateY(-1px);
+.popup-icon img,
+.popup-icon svg{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.install-popup h3{
+font-size:42px;
+line-height:1.1;
+font-weight:800;
+margin:10px 0 16px;
+color:#fff;
+}
+
+.install-popup p{
+font-size:15px;
+line-height:1.7;
+color:#9ca3af;
+margin-bottom:24px;
+}
+
+.popup-steps{
+list-style:none;
+padding:0;
+margin:0 0 18px;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.popup-steps li{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.04);
+padding:14px;
+border-radius:16px;
+font-size:14px;
+color:#d1d5db;
+}
+
+.step-num{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:24px;
+height:24px;
+border-radius:50%;
+background:#ff9900;
+color:#fff;
+font-size:12px;
+font-weight:700;
+margin-right:8px;
+}
+
+#popupInstallNowBtn{
+width:100%;
+height:68px;
+border:none;
+border-radius:18px;
+background:linear-gradient(
+135deg,
+#ff7b00,
+#ffb300
+);
+color:#fff;
+font-size:18px;
+font-weight:700;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+box-shadow:0 10px 30px rgba(255,153,0,.35);
+}
+
+#popupInstallNowBtn svg{
+width:22px;
+height:22px;
+}
+
+#popupInstallNowBtn:hover{
+transform:translateY(-2px);
+}
 
 @media(max-width:480px){
 
 .install-popup{
 max-width:100%;
-border-radius:20px;
-padding:16px;
+border-radius:28px;
+padding:20px;
 }
 
-.popup-app-icon{
-width:58px;
-height:58px;
+.install-popup h3{
+font-size:34px;
 }
 
-.popup-app-info h3{
-font-size:19px;
+.popup-close{
+width:50px;
+height:50px;
 }
 
 }
@@ -1427,7 +1398,7 @@ font-size:19px;
     <div class="popup-header">
 
       <img
-        src="./icon-192.png"
+        src="./icon-192.jpg"
         alt="App Icon"
         class="popup-app-icon"
       >
