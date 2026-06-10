@@ -752,302 +752,102 @@
     
 
     /* ===== PWA INSTALL POPUP CSS ===== */
-/* =========================
-   INSTALL POPUP OVERLAY
-========================= */
 
-.install-popup-overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.75);
-backdrop-filter:blur(12px);
--webkit-backdrop-filter:blur(12px);
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-z-index:999999;
-opacity:0;
-visibility:hidden;
-transition:.35s ease;
-}
-
-.install-popup-overlay.active{
-opacity:1;
-visibility:visible;
-}
-
-/* =========================
-   POPUP CARD
-========================= */
+/* CARD */
 
 .install-popup{
-position:relative;
-width:100%;
-max-width:390px;
-padding:24px;
-overflow:hidden;
-
-background:
-linear-gradient(
-180deg,
-#0b1022 0%,
-#050811 100%
-);
-
-border-radius:36px;
-
-border:1px solid rgba(255,255,255,.06);
-
-box-shadow:
-0 0 0 1px rgba(255,255,255,.03),
-0 25px 80px rgba(0,0,0,.85);
+max-width:380px;
+padding:20px;
+border-radius:3px !important;
 }
 
-/* Top Orange Line */
+/* TOP LINE */
 
 .install-popup::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-right:0;
-height:4px;
-background:linear-gradient(
-90deg,
-#ff4747,
-#ff8f00,
-#ff4747
-);
+height:3px;
 }
 
-/* =========================
-   APP ICON
-========================= */
+/* ICON */
 
 .popup-icon{
-width:82px;
-height:82px;
-border-radius:24px;
-overflow:hidden;
+width:60px !important;
+height:60px !important;
+border-radius:3px !important;
 position:relative;
-background:#111827;
-border:1px solid rgba(255,255,255,.08);
-margin-bottom:20px;
-
-box-shadow:
-0 10px 30px rgba(0,0,0,.4);
+overflow:hidden;
+display:block !important;
+margin-bottom:15px;
 }
-
-/* SVG Hide */
 
 .popup-icon svg{
-display:none!important;
+display:none !important;
 }
 
-/* PNG Icon */
-
-.popup-icon::before{
+.popup-icon::after{
 content:"";
 position:absolute;
 inset:0;
-background:url('./icon-192.png') center center/cover no-repeat;
-border-radius:24px;
+background-image:url("icon-192.png");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
 }
 
-/* =========================
-   CLOSE BUTTON
-========================= */
+/* CLOSE */
 
 .popup-close{
-position:absolute;
-top:22px;
-right:22px;
-
-width:56px;
-height:56px;
-
-border:none;
-outline:none;
-
-background:rgba(255,255,255,.05);
-
-border-radius:18px;
-
-color:#8d8d8d;
-font-size:28px;
-
-cursor:pointer;
-
-backdrop-filter:blur(10px);
+width:42px;
+height:42px;
+border-radius:3px !important;
 }
 
-/* =========================
-   TITLE
-========================= */
+/* TITLE */
 
 #popupTitle{
-margin:0;
-font-size:34px;
-font-weight:800;
-line-height:1.15;
-
+font-size:26px !important;
+line-height:1.2;
 background:linear-gradient(
 90deg,
 #ff5f57,
 #ff8a00,
-#ffca3a
+#ffc83d
 );
-
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
-/* Official App Label */
-
-#popupTitle::before{
-content:"🔴 PWA OFFICIAL APP";
-display:block;
-
-font-size:12px;
-font-weight:500;
-letter-spacing:5px;
-
-color:#9f9f9f;
-
-margin-bottom:16px;
-
--webkit-text-fill-color:#9f9f9f;
-}
-
-/* =========================
-   DESCRIPTION
-========================= */
-
-.install-popup p{
-margin-top:18px;
-margin-bottom:22px;
-
-font-size:15px;
-line-height:1.8;
-
-color:#a7a7a7;
-}
-
-/* Hide Old Steps */
-
-.popup-steps{
-display:none!important;
-}
-
-/* =========================
-   INSTALL BUTTON CARD
-========================= */
+/* INSTALL BUTTON */
 
 #popupInstallNowBtn{
-width:100%;
-height:115px;
-
-border:none;
-
-border-radius:22px;
-
-background:
-linear-gradient(
-90deg,
-rgba(255,130,0,.15),
-rgba(255,130,0,.05)
-);
-
-border:1px solid rgba(255,166,0,.18);
-
-position:relative;
-
-display:flex;
-justify-content:flex-end;
-align-items:center;
-
-padding-right:22px;
-
-font-size:0;
-
-overflow:hidden;
+height:70px !important;
+border-radius:3px !important;
+padding-right:15px;
 }
-
-/* GET THE APP */
 
 #popupInstallNowBtn::before{
-content:"GET THE APP";
-
-position:absolute;
-top:25px;
-left:22px;
-
-font-size:13px;
-letter-spacing:4px;
-
-color:#ffb74d;
+top:12px;
+font-size:11px;
+letter-spacing:2px;
 }
-
-/* Download Text */
 
 #popupInstallNowBtn::after{
-content:"Download for Android";
-
-position:absolute;
-left:22px;
-bottom:25px;
-
-font-size:18px;
-font-weight:700;
-
-color:#fff;
+bottom:12px;
+font-size:15px;
 }
-
-/* Download Icon */
 
 #popupInstallNowBtn svg{
-width:32px;
-height:32px;
-
-padding:15px;
-
-box-sizing:content-box;
-
-background:#ffab2d;
-
-border-radius:18px;
-
-color:#fff;
+width:22px;
+height:22px;
+padding:10px;
+border-radius:3px !important;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* DESCRIPTION */
 
-@media(max-width:480px){
-
-.install-popup{
-max-width:100%;
-padding:22px;
-border-radius:32px;
+.install-popup p{
+font-size:14px;
+margin-bottom:15px;
 }
-
-#popupTitle{
-font-size:30px;
-}
-
-#popupInstallNowBtn{
-height:105px;
-}
-
-.popup-close{
-width:52px;
-height:52px;
-}
-
-}
-
   </style>
 </head>
 <body>
@@ -1519,7 +1319,7 @@ height:52px;
     <div class="popup-header">
 
       <img
-        src="./icon-192.jpg"
+        src="./icon-192.png"
         alt="App Icon"
         class="popup-app-icon"
       >
