@@ -753,27 +753,30 @@
 
     /* ===== PWA INSTALL POPUP CSS ===== */
 
-/* =========================
-   PWA INSTALL POPUP
-========================= */
-
 .install-popup-overlay{
-position:fixed !important;
-top:0 !important;
-left:0 !important;
-width:100vw !important;
-height:100vh !important;
-display:flex !important;
-align-items:center !important;
-justify-content:center !important;
+position:fixed;
+inset:0;
+z-index:99999;
+display:flex;
+align-items:center;
+justify-content:center;
 padding:20px;
-z-index:2147483647 !important;
 background:rgba(0,0,0,.78);
 backdrop-filter:blur(18px);
 -webkit-backdrop-filter:blur(18px);
-opacity:1 !important;
-visibility:visible !important;
-pointer-events:auto !important;
+
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+
+transition:opacity .35s ease,
+visibility .35s ease;
+}
+
+.install-popup-overlay.active{
+opacity:1;
+visibility:visible;
+pointer-events:auto;
 }
 
 .install-popup{
@@ -781,7 +784,6 @@ position:relative;
 width:100%;
 max-width:380px;
 padding:20px;
-margin:auto;
 border-radius:3px;
 background:linear-gradient(180deg,#0b0b18 0%,#060611 100%);
 border:1px solid rgba(255,255,255,.08);
@@ -790,9 +792,6 @@ box-shadow:
 0 0 60px rgba(255,120,0,.08);
 overflow:hidden;
 animation:popupUp .35s ease;
-display:block !important;
-opacity:1 !important;
-visibility:visible !important;
 }
 
 .install-popup::before{
@@ -817,7 +816,7 @@ transform:translateY(30px) scale(.95);
 }
 to{
 opacity:1;
-transform:none;
+transform:translateY(0) scale(1);
 }
 }
 
@@ -852,6 +851,7 @@ background:linear-gradient(
 );
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+background-clip:text;
 }
 
 .popup-app-info span{
@@ -875,6 +875,11 @@ background:rgba(255,255,255,.05);
 color:#bdbdbd;
 font-size:24px;
 cursor:pointer;
+transition:.2s;
+}
+
+.popup-close:hover{
+background:rgba(255,255,255,.1);
 }
 
 .popup-description{
@@ -927,6 +932,11 @@ color:#fff !important;
 box-shadow:
 0 12px 30px rgba(255,145,0,.22),
 0 0 25px rgba(255,145,0,.12);
+transition:.2s;
+}
+
+.popup-install-btn:hover{
+transform:translateY(-1px);
 }
 
 .popup-install-btn svg{
