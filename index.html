@@ -1,4 +1,4 @@
-bnn<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   
@@ -752,79 +752,208 @@ bnn<!DOCTYPE html>
     
 
     /* ===== PWA INSTALL POPUP CSS ===== */
+/* =========================
+   INSTALL POPUP OVERLAY
+========================= */
 
 .install-popup-overlay{
-position:fixed;
-top:10px;
-left:0;
-right:0;
 display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(8px);
+-webkit-backdrop-filter:blur(8px);
 justify-content:center;
 align-items:flex-start;
-padding:0 10px;
+padding:20px 12px;
 z-index:999999;
 }
 
 .install-popup-overlay.active{
-display:flex;
+display:flex !important;
 }
+
+/* =========================
+   INSTALL CARD
+========================= */
 
 .install-popup{
 width:100%;
 max-width:420px;
 background:#111827;
-border:1px solid rgba(255,255,255,.1);
-border-radius:16px;
-padding:14px;
+border:1px solid rgba(255,255,255,.08);
+border-radius:24px;
+padding:18px;
 position:relative;
+box-shadow:
+0 25px 60px rgba(0,0,0,.55),
+0 0 0 1px rgba(255,255,255,.04);
+animation:popupShow .25s ease;
+}
 
-transform:translateY(-80px);
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes popupShow{
+from{
 opacity:0;
-transition:.35s ease;
+transform:translateY(-20px) scale(.96);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
 }
 
-.install-popup-overlay.active .install-popup{
-transform:translateY(0);
-opacity:1;
+/* =========================
+   HEADER
+========================= */
+
+.popup-header{
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:14px;
 }
+
+.popup-app-icon{
+width:64px;
+height:64px;
+border-radius:18px;
+object-fit:cover;
+background:#222;
+flex-shrink:0;
+}
+
+.popup-app-info{
+flex:1;
+}
+
+.popup-app-info h3{
+margin:0;
+font-size:22px;
+font-weight:700;
+color:#fff;
+line-height:1.2;
+}
+
+.popup-app-info span{
+display:block;
+margin-top:4px;
+font-size:13px;
+color:#9ca3af;
+}
+
+/* =========================
+   CLOSE BUTTON
+========================= */
 
 .popup-close{
 position:absolute;
-top:10px;
-right:10px;
-width:34px;
-height:34px;
+top:12px;
+right:12px;
+width:36px;
+height:36px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 background:rgba(255,255,255,.08);
 color:#fff;
-cursor:pointer;
-}
-
-.popup-icon{
-display:none;
-}
-
-.install-popup h3{
 font-size:16px;
-margin-bottom:5px;
+cursor:pointer;
+transition:.2s;
 }
 
-.install-popup p{
-font-size:13px;
-opacity:.8;
-margin-bottom:10px;
+.popup-close:hover{
+background:rgba(255,255,255,.15);
 }
 
-.popup-steps{
-display:none;
-}
+/* =========================
+   DESCRIPTION
+========================= */
 
-#popupInstallNowBtn{
-width:100%;
-height:44px;
+.popup-description{
 font-size:14px;
+line-height:1.6;
+color:#d1d5db;
+margin-bottom:16px;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.popup-features{
+display:flex;
+flex-direction:column;
+gap:10px;
+margin-bottom:18px;
+}
+
+.popup-feature{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.05);
+padding:12px;
+border-radius:12px;
+font-size:14px;
+color:#fff;
+}
+
+/* =========================
+   INSTALL BUTTON
+========================= */
+
+.popup-install-btn{
+width:100%;
+height:52px;
+border:none;
+border-radius:14px;
+cursor:pointer;
+
+background:linear-gradient(
+135deg,
+#7c3aed,
+#06b6d4
+);
+
+color:#fff;
+font-size:16px;
+font-weight:700;
+
+display:flex;
+align-items:center;
 justify-content:center;
+gap:10px;
+
+box-shadow:
+0 10px 25px rgba(124,58,237,.35);
+}
+
+.popup-install-btn:hover{
+transform:translateY(-1px);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:480px){
+
+.install-popup{
+max-width:100%;
+border-radius:20px;
+padding:16px;
+}
+
+.popup-app-icon{
+width:58px;
+height:58px;
+}
+
+.popup-app-info h3{
+font-size:19px;
+}
+
 }
 
   </style>
@@ -1285,58 +1414,72 @@ justify-content:center;
       <polyline points="18 15 12 9 6 15"/>
     </svg>
   </button>
-
+<!-- WPA -->
   
   <div class="install-popup-overlay" id="installPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
-    <div class="install-popup">
 
-      
-      <button class="popup-close" id="popupCloseBtn" aria-label="Close install popup">✕</button>
+  <div class="install-popup">
 
-      
-      <div class="popup-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-          <polyline points="7 10 12 15 17 10"/>
-          <line x1="12" y1="15" x2="12" y2="3"/>
-        </svg>
+    <button class="popup-close" id="popupCloseBtn" aria-label="Close">
+      ✕
+    </button>
+
+    <div class="popup-header">
+
+      <img
+        src="./icon-192.jpg"
+        alt="App Icon"
+        class="popup-app-icon"
+      >
+
+      <div class="popup-app-info">
+        <h3 id="popupTitle">Install PWA Demo</h3>
+        <span>Fast • Offline • Full Screen</span>
       </div>
 
-      <h3 id="popupTitle">Install PWA Demo</h3>
-      <p>
-        Add this app to your home screen for a full-screen,
-        offline-capable experience — just like a native app.
-      </p>
+    </div>
 
-      
-      <ul class="popup-steps" role="list">
-        <li>
-          <span class="step-num" aria-hidden="true">1</span>
-          <span>Open this page in your browser (Chrome, Safari, Edge).</span>
-        </li>
-        <li>
-          <span class="step-num" aria-hidden="true">2</span>
-          <span>Tap the <strong>Share</strong> or <strong>⋮ Menu</strong> button in your browser.</span>
-        </li>
-        <li>
-          <span class="step-num" aria-hidden="true">3</span>
-          <span>Select <strong>"Add to Home Screen"</strong> and confirm.</span>
-        </li>
-      </ul>
+    <p class="popup-description">
+      Install this app on your device for a faster experience,
+      offline access and full-screen mode.
+    </p>
 
-      
-      <button class="btn-primary" style="width:100%; justify-content:center;" id="popupInstallNowBtn" aria-label="Trigger native install prompt">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-          <polyline points="7 10 12 15 17 10"/>
-          <line x1="12" y1="15" x2="12" y2="3"/>
-        </svg>
-        Install Now
-      </button>
+    <div class="popup-features">
+
+      <div class="popup-feature">
+        ⚡ Faster Loading
+      </div>
+
+      <div class="popup-feature">
+        📶 Offline Support
+      </div>
+
+      <div class="popup-feature">
+        📱 Home Screen App
+      </div>
 
     </div>
+
+    <button
+      class="btn-primary popup-install-btn"
+      id="popupInstallNowBtn"
+      aria-label="Install App"
+    >
+
+      <svg width="18" height="18" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+
+      Install App
+
+    </button>
+
   </div>
 
+</div>
   
   <script>
     
@@ -1540,59 +1683,160 @@ justify-content:center;
   </script>
 <script>
 
-if ("serviceWorker" in navigator) {
-window.addEventListener("load", () => {
-navigator.serviceWorker.register("./service-worker.js");
-});
-}
+// ===============================
+// PWA INSTALL POPUP
+// ===============================
 
 let deferredPrompt = null;
 
-const overlay = document.getElementById("installPopup");
-const installNowBtn = document.getElementById("popupInstallNowBtn");
+const popup = document.getElementById("installPopup");
 const closeBtn = document.getElementById("popupCloseBtn");
+const installBtn = document.getElementById("popupInstallNowBtn");
+
+// Popup Open
+function openPopup() {
+  if (popup) {
+    popup.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+}
+
+// Popup Close
+function closePopup() {
+  if (popup) {
+    popup.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+}
+
+// Already Installed Check
+const isStandalone =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  window.navigator.standalone === true;
+
+if (!isStandalone) {
+
+  window.addEventListener("load", () => {
+
+    const popupClosed = localStorage.getItem("pwa_popup_closed");
+
+    if (!popupClosed) {
+      setTimeout(() => {
+        openPopup();
+      }, 800);
+    }
+
+  });
+
+}
+
+// Close Button
+closeBtn?.addEventListener("click", () => {
+  closePopup();
+  localStorage.setItem("pwa_popup_closed", "true");
+});
+
+// Click Outside Close
+popup?.addEventListener("click", (e) => {
+  if (e.target === popup) {
+    closePopup();
+  }
+});
+
+// ESC Close
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closePopup();
+  }
+});
+
+// ===============================
+// PWA INSTALL EVENT
+// ===============================
 
 window.addEventListener("beforeinstallprompt", (e) => {
-e.preventDefault();
-deferredPrompt = e;
-});
 
-function openPopup(){
-overlay.classList.add("active");
-}
+  e.preventDefault();
 
-function closePopup(){
-overlay.classList.remove("active");
-}
+  deferredPrompt = e;
 
-document.getElementById("heroInstallBtn")?.addEventListener("click", openPopup);
-document.getElementById("navInstallBtn")?.addEventListener("click", openPopup);
-document.getElementById("ctaInstallBtn")?.addEventListener("click", openPopup);
-
-closeBtn?.addEventListener("click", closePopup);
-
-installNowBtn?.addEventListener("click", async () => {
-
-if(deferredPrompt){
-deferredPrompt.prompt();
-
-const choice = await deferredPrompt.userChoice;
-
-if(choice.outcome === "accepted"){
-closePopup();
-}
-
-deferredPrompt = null;
-
-}else{
-
-alert("Chrome menu → Add to Home Screen");
-
-}
+  console.log("Install Prompt Ready");
 
 });
+
+// Install Button Click
+installBtn?.addEventListener("click", async () => {
+
+  if (!deferredPrompt) {
+
+    alert(
+      "Install option not available yet. Please use Chrome and visit the site over HTTPS."
+    );
+
+    return;
+  }
+
+  deferredPrompt.prompt();
+
+  const choiceResult = await deferredPrompt.userChoice;
+
+  if (choiceResult.outcome === "accepted") {
+
+    console.log("User Installed App");
+
+    closePopup();
+
+    localStorage.setItem("pwa_installed", "true");
+
+  } else {
+
+    console.log("User Cancelled Install");
+
+  }
+
+  deferredPrompt = null;
+
+});
+
+// Installed Event
+window.addEventListener("appinstalled", () => {
+
+  console.log("PWA Installed Successfully");
+
+  closePopup();
+
+  localStorage.setItem("pwa_installed", "true");
+
+  deferredPrompt = null;
+
+});
+
+// ===============================
+// SERVICE WORKER
+// ===============================
+
+if ("serviceWorker" in navigator) {
+
+  window.addEventListener("load", async () => {
+
+    try {
+
+      await navigator.serviceWorker.register("./service-worker.js");
+
+      console.log("Service Worker Registered");
+
+    } catch (err) {
+
+      console.error("SW Error:", err);
+
+    }
+
+  });
+
+}
 
 </script>
+
 </body>
 </html>
 
