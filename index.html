@@ -755,22 +755,19 @@
 
 .install-popup-overlay{
 position:fixed;
-inset:0;
+top:0;
+left:0;
+right:0;
 z-index:99999;
 display:flex;
-align-items:center;
 justify-content:center;
-padding:20px;
-background:rgba(0,0,0,.78);
-backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
-
+align-items:flex-start;
+padding:12px;
+background:transparent;
+pointer-events:none;
 opacity:0;
 visibility:hidden;
-pointer-events:none;
-
-transition:opacity .35s ease,
-visibility .35s ease;
+transition:.3s;
 }
 
 .install-popup-overlay.active{
@@ -780,189 +777,131 @@ pointer-events:auto;
 }
 
 .install-popup{
-position:relative;
 width:100%;
-max-width:380px;
-padding:20px;
-border-radius:3px;
-background:linear-gradient(180deg,#0b0b18 0%,#060611 100%);
-border:1px solid rgba(255,255,255,.08);
-box-shadow:
-0 20px 60px rgba(0,0,0,.65),
-0 0 60px rgba(255,120,0,.08);
+max-width:720px;
+min-height:auto;
+padding:12px 16px;
+border-radius:6px;
+background:#1697f6;
+border:none;
+box-shadow:0 6px 25px rgba(0,0,0,.25);
+
+display:flex;
+align-items:center;
+gap:14px;
+
+animation:none;
 overflow:hidden;
-animation:popupUp .35s ease;
 }
 
 .install-popup::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-right:0;
-height:2px;
-background:linear-gradient(
-90deg,
-#ff3c4f,
-#ff8c1a,
-#ffc247
-);
-}
-
-@keyframes popupUp{
-from{
-opacity:0;
-transform:translateY(30px) scale(.95);
-}
-to{
-opacity:1;
-transform:translateY(0) scale(1);
-}
+display:none;
 }
 
 .popup-header{
 display:flex;
 align-items:center;
-gap:16px;
-margin-bottom:18px;
+gap:12px;
+margin:0;
+flex:1;
 }
 
 .popup-app-icon{
-width:78px;
-height:78px;
-border-radius:18px;
-padding:6px;
+width:52px;
+height:52px;
+border-radius:8px;
+padding:0;
+background:#fff;
 object-fit:contain;
-background:#0f0f17;
-border:1px solid rgba(255,255,255,.08);
-box-shadow:0 8px 25px rgba(0,0,0,.45);
+border:none;
+box-shadow:none;
+}
+
+.popup-app-info{
+flex:1;
 }
 
 .popup-app-info h3{
 margin:0;
-font-size:26px;
-font-weight:800;
-line-height:1.05;
-background:linear-gradient(
-90deg,
-#ff5252 0%,
-#ff8c25 50%,
-#ffc857 100%
-);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-background-clip:text;
+font-size:18px;
+font-weight:700;
+color:#fff;
+background:none;
+-webkit-text-fill-color:#fff;
 }
 
 .popup-app-info span{
-display:block;
-margin-top:6px;
-font-size:12px;
-letter-spacing:3px;
-text-transform:uppercase;
-color:#8e8ea3;
+margin-top:2px;
+font-size:13px;
+color:rgba(255,255,255,.9);
+letter-spacing:0;
+text-transform:none;
 }
 
-.popup-close{
-position:absolute;
-top:16px;
-right:16px;
-width:46px;
-height:46px;
-border:none;
-border-radius:3px;
-background:rgba(255,255,255,.05);
-color:#bdbdbd;
-font-size:24px;
-cursor:pointer;
-transition:.2s;
-}
-
-.popup-close:hover{
-background:rgba(255,255,255,.1);
-}
-
-.popup-description{
-margin:16px 0 18px;
-color:#b8b8c8;
-font-size:14px;
-line-height:1.6;
-}
-
+.popup-description,
 .popup-features{
-display:flex;
-flex-direction:column;
-gap:12px;
-margin-bottom:20px;
-}
-
-.popup-feature{
-padding:14px 16px;
-border-radius:3px;
-background:linear-gradient(
-90deg,
-rgba(255,145,0,.12),
-rgba(255,145,0,.04)
-);
-border:1px solid rgba(255,170,60,.12);
-font-size:14px;
-font-weight:600;
-color:#fff;
+display:none;
 }
 
 .popup-install-btn{
-width:100%;
-height:50px !important;
+width:auto;
+height:44px !important;
+padding:0 18px;
+margin-left:auto;
+
 border:none;
-border-radius:3px !important;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:10px;
-font-size:16px;
-font-weight:700;
-cursor:pointer;
-background:linear-gradient(
-90deg,
-#ff4d4d,
-#ff8f1f,
-#ffc145
-) !important;
+border-radius:4px !important;
+
+background:#000 !important;
 color:#fff !important;
-box-shadow:
-0 12px 30px rgba(255,145,0,.22),
-0 0 25px rgba(255,145,0,.12);
-transition:.2s;
+
+font-size:14px;
+font-weight:700;
+
+box-shadow:none;
 }
 
 .popup-install-btn:hover{
-transform:translateY(-1px);
+transform:none;
 }
 
-.popup-install-btn svg{
-width:18px;
-height:18px;
+.popup-close{
+position:static;
+width:36px;
+height:36px;
+flex-shrink:0;
+
+background:rgba(255,255,255,.15);
+border-radius:4px;
+
+font-size:18px;
+color:#fff;
 }
 
-@media(max-width:480px){
+@media(max-width:600px){
 
 .install-popup{
-max-width:360px;
-padding:18px;
+padding:10px;
+gap:10px;
 }
 
 .popup-app-icon{
-width:72px;
-height:72px;
+width:44px;
+height:44px;
 }
 
 .popup-app-info h3{
-font-size:24px;
+font-size:15px;
+}
+
+.popup-app-info span{
+font-size:12px;
 }
 
 .popup-install-btn{
-height:48px !important;
-font-size:15px;
+height:40px !important;
+padding:0 12px;
+font-size:12px;
 }
 
 }
